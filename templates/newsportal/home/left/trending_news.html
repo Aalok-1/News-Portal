@@ -1,0 +1,26 @@
+<!-- Trending News Grid/List -->
+<h3 class="mb-3 section-title">
+  <span>Trending News</span>
+</h3>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <!-- Trending Item 1 -->
+  {% for post in posts %}
+  <div class="col">
+    <div class="card h-100 shadow-sm news-card">
+      <img src="{{ post.featured_image.url }}"
+            class="card-img-top"
+            alt="Trending News 1" 
+            width="100"
+            height="200"/>
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.content|truncatechars:60 }}</p>
+        <a href="article.html" class="btn btn-outline-success btn-sm">Read More</a>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Time of post added</small>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
