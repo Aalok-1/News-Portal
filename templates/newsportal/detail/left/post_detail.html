@@ -1,0 +1,36 @@
+<article>
+            <!-- Article Header -->
+            <header class="article-header mb-4">
+              <h1 class="article-title">{{ post.title }}</h1>
+              <div class="article-meta">
+                <span class="author-profile">
+                  <img src="{{ post.author.userprofile.image.url }}" alt="Author"  />
+                  By <a href="#" class="text-decoration-none ms-1">{{ post.author.get_full_name}}</a>
+                </span>
+                <span><i class="bi bi-calendar-event"></i> Published: {{ post.published_at|date:"F j, Y" }}</span>
+                <span><i class="bi bi-eye"></i> Views: {{ post.views_count }}</span>
+                <span><i class="bi bi-folder"></i>Category: <a href="#" class="text-decoration-none ms-1">{{ post.category.name|title }}</a></span>
+                <span><i class="bi bi-tags"></i>Tags: <a href="#" class="text-decoration-none ms-1">
+                    {% for tag in post.tag.all %}#{{ tag.name }},{% endfor %}
+                </a></span>
+              </div>
+              <img src="{{ post.featured_image.url }}"
+                   alt="{{ post.title }}" 
+                   width="1200"
+                   height="500"/>
+            </header>
+
+            <!-- Article Body -->
+            <section class="article-content">
+                {{ post.content|linebreaksbr }}
+       
+            </section>
+
+            <!-- Article Footer -->
+            <footer class="mt-4 pt-4 border-top">
+              <div class="article-tags">
+                <strong>Tags:</strong>
+                {% for tag in post.tag.all %}<a href="#">{{ tag.name|title }}</a>{% endfor %}
+              </div>
+            </footer>
+          </article>

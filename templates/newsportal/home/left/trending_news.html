@@ -15,10 +15,10 @@
       <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
         <p class="card-text">{{ post.content|truncatechars:60 }}</p>
-        <a href="article.html" class="btn btn-outline-success btn-sm">Read More</a>
+        <a href="{% url 'post-detail' post.pk %}" class="btn btn-outline-success btn-sm">Read More</a>
       </div>
       <div class="card-footer">
-        <small class="text-muted">Time of post added</small>
+        <small class="text-muted">{{ post.published_at|date:"F j, Y" }}</small>
       </div>
     </div>
   </div>

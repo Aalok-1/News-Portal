@@ -50,4 +50,31 @@ class Post(TimeStampModel):
     def __str__(self):
         return self.title
 
- 
+class Advertisement(TimeStampModel):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="advertisements/%Y/%m/%d", blank=False)
+
+    def __str__(self):
+        return self.title
+
+class UserProfile(TimeStampModel):
+    user = models.OneToOneField("auth.User", on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="user_image/%Y/%m/%d", blank=False)
+    address = models.CharField(max_length=200)
+    biography = models.TextField()
+
+    def __str__(self):
+        return self.user.username
+    
+
+
+
+class Comment(TimeStampModel):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey("auth.User", on_delete=models.CASCADE)
+    content = models.TextField()
+
+
+    def __str__(self):
+        return f"{self.content[:50]} | {self.user.username}"
+
