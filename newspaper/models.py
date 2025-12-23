@@ -78,3 +78,26 @@ class Comment(TimeStampModel):
     def __str__(self):
         return f"{self.content[:50]} | {self.user.username}"
 
+
+
+class Contact(TimeStampModel):
+    
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+
+    
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        ordering = ["created_at"]
+
+
+class Newsletter(TimeStampModel):
+    email = models.EmailField(unique=True)
+
+
+    def __str__(self):
+        return self.email

@@ -31,36 +31,38 @@
           <ul class="dropdown-menu">
             {% for category in categories %}
               <li>
-                <a class="dropdown-item" href="category.html">{{ category.name }}</a>
+                <a class="dropdown-item" href="{% url 'post-by-category' category.pk %}">{{ category.name }}</a>
               </li>
             {% endfor %}
             <li>
               <hr class="dropdown-divider" />
             </li>
             <li>
-              <a class="dropdown-item" href="all-categories.html">All Categories</a>
+              <a class="dropdown-item" href="{% url 'categories' %}">All Categories</a>
             </li>
-            <li>
+            <!--<li>
               <a class="dropdown-item" href="all-tags.html">All Tags</a>
-            </li>
+            </li> -->
           </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="about.html">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact Us</a>
+          <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#newsletter-section">Newsletter</a>
         </li>
       </ul>
 
-      <form class="d-flex me-3" role="search">
+      <form class="d-flex me-3" role="search" action="{% url 'search' %}" method="get">
         <input class="form-control form-control-sm me-2"
+              name="query"
                type="search"
                placeholder="Search..."
-               aria-label="Search" />
+               aria-label="Search" 
+               value="{{ query }}" />
         <button class="btn btn-outline-success btn-sm" type="submit">
           <i class="bi bi-search"></i>
         </button>

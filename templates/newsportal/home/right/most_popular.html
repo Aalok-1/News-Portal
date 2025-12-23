@@ -7,7 +7,7 @@
                 {% for post in popular_posts %}
                  <li>
                   <img src="{{ post.featured_image.url }}"
-                       alt="Popular 1" width-"70" height="70"/>
+                       alt="Popular 1" width="70" height="70"/>
                   <div>
                       <a href="{% url 'post-detail' post.pk %}" 
                       class="popular-title-link">{{ post.title }}</a>
