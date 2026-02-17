@@ -1,0 +1,30 @@
+ <!-- Recommended Articles Section -->
+          {% if recommended_posts %}
+          <section class="recommended-articles mt-5">
+            <h3 class="mb-4 section-title">
+              <span>Recommended For You</span>
+            </h3>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              {% for post in recommended_posts %}
+              <!-- recommended post -->
+              <div class="col">
+                <div class="card h-100 shadow-sm news-card">
+                  <img src="{{ post.featured_image.url }}"
+                       class="card-img-top"
+                       alt="{{ post.title }}" 
+                       width="400"
+                       height="250"/>
+                  <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <a href="{% url 'post-detail' post.pk %}"
+                     class="btn btn-outline-info btn-sm mt-2">Read Recommendation</a>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">{{ post.published_at|date:"F j, Y" }}</small>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </section>
+          {% endif %}

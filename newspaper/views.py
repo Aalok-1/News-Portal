@@ -13,6 +13,7 @@ from django.http import JsonResponse
 
 from django.core.paginator import PageNotAnInteger, Paginator
 from django.db.models import Q
+from newspaper.recommender import ContentEngine
 
 
 
@@ -91,6 +92,10 @@ class PostDetailView(Sidebarmixin, DetailView):
         context["related_posts"] = Post.objects.filter(
             published_at__isnull=False, status="active", category=self.object.category
         ).order_by("-published_at")[:5]
+
+        # Content-based Recommendations
+        engine = ContentEngine()
+        context["recommended_posts"] = engine.get_similar_posts(self.object.id, n=5)
 
     
         return context
